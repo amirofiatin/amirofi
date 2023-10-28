@@ -1,11 +1,14 @@
-interface WordDao {
+import java.awt.List
+import java.util.concurrent.Flow
+import kotlin.collections.List as List1
 
-    @Query("SELECT * FROM word_table ORDER BY word ASC")
-    fun getAlphabetizedWords(): List<Word>
+interface WordDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Word)
 
     @Query("DELETE FROM word_table")
     suspend fun deleteAll()
+
+    fun getAlphabetizedWords(): Flow<List<Word>>
 }
